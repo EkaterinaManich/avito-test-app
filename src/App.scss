@@ -1,1 +1,26 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
 
+    &--main {
+        display: flex;
+        position: relative;
+        width: 70%;
+        height: 70%;
+        background: whitesmoke;
+
+    }
+
+    &--close {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

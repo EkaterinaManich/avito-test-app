@@ -70,28 +70,31 @@ function postComment(id,commentData) {
     <div className="App">
       <h1>Test App</h1>
       {images ? (
-      <>
+      <div className="images">
         {images.map((item) => {
           return <CustomImage url={item.url} key={item.id} onClick={() => showModalById(item.id)} />
         })}
-      </>
+      </div>
       ) : 'Loading...'}
       {modal && (
         <div className="modal">
           <div className="modal--main">
-            <div>
-              <img style={{width:"100%", maxWidth:"350px"}} src={modal.url} alt="some" />\
-            </div>
-            {modal.comments.map((item) => {
+            <div className="modal--content">
+              <div className="modal--image">
+                <img style={{width:"100%",  borderRadius: "15px"}} src={modal.url} alt="some" />
+              </div>
+              {modal.comments.map((item) => {
               return (
-                <div key={item.id} style={{margin:"0 50px"}}>
+                <div className="modal--comment" key={item.id}>
                   <div>{new Date(item.date).getDate()}.{new Date(item.date).getMonth() + 1}.{new Date(item.date).getFullYear()}</div>
                   <div>{item.text}</div>
                 </div>
               )
             })}
+            </div>
             <div className="modal--form">
               <input
+                className="modal--input"
                 type="text"
                 name="name"
                 placeholder="Your name"
@@ -99,6 +102,7 @@ function postComment(id,commentData) {
                 onChange={(event)=>setName(event.target.value)}
               />
               <input
+                className="modal--input"
                 type="text"
                 name="comment"
                 placeholder="Your comment"
@@ -106,6 +110,7 @@ function postComment(id,commentData) {
                 onChange={(event)=>setComment(event.target.value)}
               />
               <button
+                className="modal--submit"
                 onClick={()=> {postComment(modal.id, {name: name, comment: comment})}}
               >Post comment</button>
               {commentStatus && <div>Comment Sended</div>}
